@@ -1,0 +1,90 @@
+library(rgl)
+library(permute)
+library(lattice)
+library(vegan)
+library(plot3D)
+
+rm(list = ls())
+#Simulation du swissRoll
+#input:
+#     n: nombre de data
+#     dim: nombre de dimension maniflod
+#mani-tp6.r
+simuData_swissRoll<-function(n,dim=2){
+  u <- matrix(runif(2 * n), ncol = dim)
+  v <- 3 * pi / 2 * (1 + 2 * u[, 1])
+  x <- -cos(v) * v
+  y <- 20 * u[, 2]
+  z <- sin(v) * v
+  swissroll <- cbind(x, y , z)
+  scatter3D(x, y, z, phi = 80, theta = 0)
+  scatter3D(x, y, z, phi = 20, theta = 0)
+  plot3d(swissroll[order(v), ], type="p",aspect =TRUE,col=rainbow(n),size=10)
+  return(swissroll[order(v), ])
+}
+
+simuData_swissRoll(1000)
+
+#Simulation du helix
+#input:
+#     n: nombre de data
+#     dim: nombre de dimension maniflod
+simuData_helix<-function(n,dim=1){
+  u <- matrix(2 * pi * runif(n), ncol = dim)
+  x <- (2+cos(8*u[,1]))*cos(u[,1])
+  y <- (2+cos(8*u[,1]))*sin(u[,1])
+  z <- sin(8*u[,1])
+  helix <- cbind(x, y, z)
+  scatter3D(x, y, z, phi = 80, theta = 0)
+  scatter3D(x, y, z, phi = 20, theta = 0)
+  plot3d(helix[order(x), ], type="p",aspect =TRUE,col=rainbow(n),size=10)
+  return(helix[order(x), ])
+}
+
+simuData_helix(1000)
+
+
+#Simulation du sphere
+#input:
+#     n: nombre de data
+#     r: rayon de sphere
+#     dim: nombre de dimension maniflod
+simuData_sphere<-function(n,r,dim=2){
+  u <- matrix(runif(n*2,0,2*pi), ncol = dim)
+  
+  theta <- u[,1]
+  phi <- u[,2]
+  
+  x <- (r * sin(phi) * cos(theta)) 
+  y <- (r * sin(phi) * sin(theta))
+  z <- (r * cos(phi))
+  sphere<- cbind(x, y, z)
+  scatter3D(x, y, z, phi = 80, theta = 0)
+  scatter3D(x, y, z, phi = 20, theta = 0)
+  plot3d(sphere[order(x), ], type="p",aspect =TRUE,col=rainbow(n),size=10)
+  return(sphere[order(x), ])
+}
+
+simuData_sphere(1000,r=2)
+
+#Simulation du brokenswissroll
+#input:
+#     n: nombre de data
+#     dim: nombre de dimension maniflod
+#     a,b: enlever de donnees intevalle [a,b] b>a
+simuData_brokenswissroll <- function(n,dim=2, a, b) {
+  # rejected an resampled
+  u <- matrix(runif(2*n), ncol = dim)
+  u <- u[which(u[,1]< a | u[,1]>b),]
+  v <- 3 * pi / 2 * (1 + 2 * u[, 1])
+  x <- -cos(v) * v
+  y <- 20 * u[, 2]
+  z <- sin(v) * v
+  swissroll <- cbind(x, y , z)
+  scatter3D(x, y, z, phi = 80, theta = 0)
+  scatter3D(x, y, z, phi = 20, theta = 0)
+  plot3d(swissroll[order(v), ], type="p",aspect =TRUE,col=rainbow(n),size=10)
+}
+simuData_brokenswissroll(1000,a = 0.4,b = 0.8)
+
+
