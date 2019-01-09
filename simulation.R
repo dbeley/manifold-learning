@@ -20,7 +20,6 @@ simuData_swissRoll<-function(n,dim=2){
   layout(matrix(1:2,1:2))
   scatter3D(x, y, z, phi = 80, theta = 0)
   scatter3D(x, y, z, phi = 20, theta = 0)
-  detach(mtcars)
   plot3d(swissroll[order(v), ], type="p",aspect =TRUE,col=rainbow(n),size=10)
   return(swissroll[order(v), ])
 }
@@ -40,7 +39,6 @@ simuData_helix<-function(n,dim=1){
   layout(matrix(1:2,1:2))
   scatter3D(x, y, z, phi = 80, theta = 0)
   scatter3D(x, y, z, phi = 20, theta = 0)
-  detach(mtcars)
   plot3d(helix[order(x), ], type="p",aspect =TRUE,col=rainbow(n),size=10)
   return(helix[order(x), ])
 }
@@ -112,5 +110,3 @@ simuData_twinpeaks <- function(n,dim=2,h=2) {
   return(twinpeaks)
 }
 simuData_twinpeaks(1000)
-
-
