@@ -17,8 +17,10 @@ simuData_swissRoll<-function(n,dim=2){
   y <- 20 * u[, 2]
   z <- sin(v) * v
   swissroll <- cbind(x, y , z)
+  layout(matrix(1:2,1:2))
   scatter3D(x, y, z, phi = 80, theta = 0)
   scatter3D(x, y, z, phi = 20, theta = 0)
+  detach(mtcars)
   plot3d(swissroll[order(v), ], type="p",aspect =TRUE,col=rainbow(n),size=10)
   return(swissroll[order(v), ])
 }
@@ -35,8 +37,10 @@ simuData_helix<-function(n,dim=1){
   y <- (2+cos(8*u[,1]))*sin(u[,1])
   z <- sin(8*u[,1])
   helix <- cbind(x, y, z)
+  layout(matrix(1:2,1:2))
   scatter3D(x, y, z, phi = 80, theta = 0)
   scatter3D(x, y, z, phi = 20, theta = 0)
+  detach(mtcars)
   plot3d(helix[order(x), ], type="p",aspect =TRUE,col=rainbow(n),size=10)
   return(helix[order(x), ])
 }
@@ -59,6 +63,7 @@ simuData_sphere<-function(n,r,dim=2){
   y <- (r * sin(phi) * sin(theta))
   z <- (r * cos(phi))
   sphere<- cbind(x, y, z)
+  layout(matrix(1:2,1:2))
   scatter3D(x, y, z, phi = 80, theta = 0)
   scatter3D(x, y, z, phi = 20, theta = 0)
   plot3d(sphere[order(x), ], type="p",aspect =TRUE,col=rainbow(n),size=10)
@@ -81,10 +86,31 @@ simuData_brokenswissroll <- function(n,dim=2, a, b) {
   y <- 20 * u[, 2]
   z <- sin(v) * v
   swissroll <- cbind(x, y , z)
+  layout(matrix(1:2,1:2))
   scatter3D(x, y, z, phi = 80, theta = 0)
   scatter3D(x, y, z, phi = 20, theta = 0)
   plot3d(swissroll[order(v), ], type="p",aspect =TRUE,col=rainbow(n),size=10)
+  return(swissroll)
 }
 simuData_brokenswissroll(1000,a = 0.4,b = 0.8)
+
+#Simulation du twinpeaks
+#input:
+#     n: nombre de data
+#     dim: nombre de dimension maniflod
+#     h: nombre de peak
+simuData_twinpeaks <- function(n,dim=2,h=2) {
+  # rejected an resampled
+  u <- matrix(runif(2*n), ncol = dim)
+  height<-h * apply(sin(h * pi * u), 1, prod)
+  
+  twinpeaks <- cbind(u, height)
+  layout(matrix(1:2,1:2))
+  scatter3D(x=u[,1], y=u[,2], z=height, phi = 80, theta = 0)
+  scatter3D(x=u[,1], y=u[,2], z=height, phi = 20, theta = 0)
+  plot3d(twinpeaks, type="p",aspect =TRUE,col=rainbow(n),size=10)
+  return(twinpeaks)
+}
+simuData_twinpeaks(1000)
 
 
