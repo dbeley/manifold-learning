@@ -1,17 +1,16 @@
-library("rgl")
-library("permute")
-library("lattice")
-# ACP
-library("FactoMineR")
-library("factoextra")
-# Isomap
-library("vegan")
-# Plot3d
-library("plot3D")
-# LLE
-library("lle")
+#library("rgl")
+#library("permute")
+#library("lattice")
+## ACP
+#library("FactoMineR")
+#library("factoextra")
+## Isomap
+#library("vegan")
+## Plot3d
+#library("plot3D")
+## LLE
+#library("lle")
 
-rm(list = ls())
 # Simulation des données
 
 #Simulation du swissRoll
@@ -33,8 +32,8 @@ simuData_swissRoll<-function(n,dim=2){
   return(swissroll[order(v), ])
 }
 
-swissroll <- simuData_swissRoll(1000)
-plot3d(swissroll, type="p", aspect = TRUE, col=rainbow(nrow(swissroll)), size=10)
+#swissroll <- simuData_swissRoll(1000)
+#plot3d(swissroll, type="p", aspect = TRUE, col=rainbow(nrow(swissroll)), size=10)
 
 #Simulation du helix
 #input:
@@ -53,8 +52,8 @@ simuData_helix<-function(n,dim=1){
   return(helix[order(x), ])
 }
 
-helix <- simuData_helix(1000)
-plot3d(helix, type="p", aspect = TRUE, col=rainbow(nrow(helix)), size=10)
+#helix <- simuData_helix(1000)
+#plot3d(helix, type="p", aspect = TRUE, col=rainbow(nrow(helix)), size=10)
 
 
 #Simulation du sphere
@@ -79,8 +78,8 @@ simuData_sphere<-function(n,r,dim=2){
   return(sphere[order(x), ])
 }
 
-sphere <- simuData_sphere(1000, r=2)
-plot3d(sphere, type="p", aspect = TRUE, col=rainbow(nrow(sphere)), size=10)
+#sphere <- simuData_sphere(1000, r=2)
+#plot3d(sphere, type="p", aspect = TRUE, col=rainbow(nrow(sphere)), size=10)
 
 #Simulation du brokenswissroll
 #input:
@@ -109,8 +108,8 @@ simuData_brokenswissroll <- function(n,dim=2, a, b) {
   return(swissroll)
 }
 
-brokenswissroll <- simuData_brokenswissroll(1000, a=0.4, b=0.8)
-plot3d(brokenswissroll, type="p", aspect = TRUE, col=rainbow(nrow(brokenswissroll)), size=10)
+#brokenswissroll <- simuData_brokenswissroll(1000, a=0.4, b=0.8)
+#plot3d(brokenswissroll, type="p", aspect = TRUE, col=rainbow(nrow(brokenswissroll)), size=10)
 
 #Simulation du twinpeaks
 #input:
@@ -130,44 +129,5 @@ simuData_twinpeaks <- function(n,dim=2,h=2) {
   return(twinpeaks)
 }
 
-twinpeaks <- simuData_twinpeaks(1000)
-plot3d(twinpeaks, type="p", aspect = TRUE, col=rainbow(nrow(twinpeaks)), size=10)
-
-# Estimation
-# ACP
-res.pca2 <- prcomp(swissroll)
-res.pca <- PCA(swissroll, graph=F)
-
-fviz_pca_ind(res.pca)
-
-plot(prcomp(swissroll)$x)
-
-# Isomap
-iso <- isomap(dist(swissroll), k=5, ndim=2)
-iso <- isomap(dist(swissroll), k=13, ndim=2)
-iso <- isomap(dist(swissroll), k=20, ndim=2)
-str(iso)
-plot(iso, pch=19)
-plot(iso$points)
-#plot(iso$points[order(v), ], col = rainbow(n), pch=19)
-plot(iso$net)
-
-par(mfrow=c(1,4))
-iso <- isomap(dist(swissroll), k=80, ndim=2)
-plot(iso, pch=19)
-iso <- isomap(dist(swissroll), k=110, ndim=2)
-plot(iso, pch=19)
-iso <- isomap(dist(swissroll), k=150, ndim=2)
-plot(iso, pch=19)
-iso <- isomap(dist(swissroll), k=300, ndim=2)
-plot(iso, pch=19)
-par(mfrow=c(1,1))
-
-# LLE
-k50 <- lle(sphere, m=2, k=50, reg=2, ss=FALSE, id=TRUE, v=0.9 )
-plot(k50$Y)
-plot(k50$X)
-
-bestk <- lle::calc_k(sphere, m=1)
-res.lle <- lle(sphere, m=1, k=5)
-plot(res.lle$Y)
+#twinpeaks <- simuData_twinpeaks(1000)
+#plot3d(twinpeaks, type="p", aspect = TRUE, col=rainbow(nrow(twinpeaks)), size=10)

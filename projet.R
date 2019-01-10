@@ -27,7 +27,7 @@ simuData_swissroll <- function(n) {
   swissroll[order(v), ]
 }
 
-swissroll <- simuData_swissroll(5000)
+swissroll <- simuData_swissroll(500)
 plot3d(swissroll, col = rainbow(nrow(swissroll)), size = 10)
 
 simuData_brokenswissroll <- function(n, a = 0, b = 10) {
@@ -59,7 +59,7 @@ simuData_brokenswissroll <- function(n, a = 0, b = 10) {
   swissroll
 }
 
-bswissroll <- simuData_brokenswissroll(5000, 4, 9)
+bswissroll <- simuData_brokenswissroll(500, 4, 9)
 plot3d(bswissroll, col = rainbow(nrow(bswissroll)), size = 10)
 
 simuData_twinpeaks <- function(n) {
@@ -81,7 +81,7 @@ simuData_twinpeaks <- function(n) {
   twinpeaks[order(z), ]
 }
 
-twinpeaks <- simuData_twinpeaks(5000)
+twinpeaks <- simuData_twinpeaks(500)
 plot3d(twinpeaks, col = rainbow(nrow(twinpeaks)), size = 10)
 
 simuData_helix <- function(n) {
@@ -93,5 +93,5 @@ simuData_helix <- function(n) {
   helix[order(x), ]
 }
 
-helix <- simuData_helix(5000)
+helix <- simuData_helix(500)
 plot3d(helix, col = rainbow(nrow(helix)), size = 10)
