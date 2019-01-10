@@ -139,3 +139,5 @@ brokenswissroll <- simuData_brokenswissroll(500, a=0.4, b=0.8)
 helix <- simuData_helix(500)
 twinpeaks <- simuData_twinpeaks(500)
 sphere <- simuData_sphere(500, r=2)
+
+layout(matrix(1:1,1:1))

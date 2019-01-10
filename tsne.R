@@ -37,7 +37,7 @@ list_tsne <- list(tsne_swissroll, tsne_brokenswissroll, tsne_helix, tsne_twinpea
 
 for (df in list_tsne) {
   dfnm <- comment(df)
-  plot(df, main=dfnm)
+  plot(df$Y, main=dfnm)
 }
 
 # plot tsne

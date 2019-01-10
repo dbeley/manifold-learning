@@ -47,7 +47,7 @@ list_lle <- list(lle_swissroll, lle_brokenswissroll, lle_helix, lle_twinpeaks, l
 
 for (df in list_lle) {
   dfnm <- comment(df)
-  plot(df, main=dfnm)
+  plot(df$Y, main=dfnm)
 }
 
 # plot lle
