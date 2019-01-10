@@ -131,3 +131,11 @@ simuData_twinpeaks <- function(n,dim=2,h=2) {
 
 #twinpeaks <- simuData_twinpeaks(1000)
 #plot3d(twinpeaks, type="p", aspect = TRUE, col=rainbow(nrow(twinpeaks)), size=10)
+
+# Données
+set.seed(20)
+swissroll <- simuData_swissRoll(1000)
+helix <- simuData_helix(1000)
+sphere <- simuData_sphere(1000, r=2)
+brokenswissroll <- simuData_brokenswissroll(1000, a=0.4, b=0.8)
+twinpeaks <- simuData_twinpeaks(1000)
