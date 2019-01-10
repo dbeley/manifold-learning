@@ -46,13 +46,9 @@ continuity <- function(k, data, data_2d) {
 }
 
 
-#trustworthiness(2, swissroll[1:200,], iso$points[1:200,])
-#trustworthiness(12, swissroll, iso$points)
-#
 #Rprof()
 #continuity(12, swissroll[1:200,], iso$points[1:200,])
 #Rprof(NULL)
 #summaryRprof()
 #
-#debug(trustworthiness)
-#undebug(trustworthiness)
+#trustworthiness(2, swissroll[1:200,], iso$points[1:200,])
