@@ -33,17 +33,27 @@ list_data <- list(swissroll, brokenswissroll, helix, twinpeaks, sphere)
 
 # LLE sur swissroll, helix, sphere, brokenswissroll, twinpeaks
 lle_swissroll <- esti_lle(swissroll, 10)
+comment(lle_swissroll) <- "Swissroll"
 lle_brokenswissroll <- esti_lle(brokenswissroll, 10)
+comment(lle_brokenswissroll) <- "Brokenswissroll"
 lle_helix <- esti_lle(helix, 10)
+comment(lle_helix) <- "Helix"
 lle_twinpeaks <- esti_lle(twinpeaks, 10)
+comment(lle_twinpeaks) <- "Twinpeaks"
 lle_sphere <- esti_lle(sphere, 10)
+comment(lle_sphere) <- "Sphere"
 
 list_lle <- list(lle_swissroll, lle_brokenswissroll, lle_helix, lle_twinpeaks, lle_sphere)
 
+for (df in list_lle) {
+  dfnm <- comment(df)
+  plot(df, main=dfnm)
+}
+
 # plot lle
-par(mfrow=c(1, 2))
-lapply(list_lle, function(x) {plot(x$Y)})
-par(mfrow=c(1, 1))
+#par(mfrow=c(1, 2))
+#lapply(list_lle, function(x) {plot(x$Y)})
+#par(mfrow=c(1, 1))
 
 # trustworthiness
 trustworthiness_lle_swissroll <- trustworthiness(12, swissroll, lle_swissroll$Y)

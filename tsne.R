@@ -23,17 +23,27 @@ list_data <- list(swissroll, brokenswissroll, helix, twinpeaks, sphere)
 
 # t-SNE sur swissroll, helix, sphere, brokenswissroll, twinpeaks
 tsne_swissroll <- esti_tsne(swissroll, 30)
+comment(tsne_swissroll) <- "Swissroll"
 tsne_brokenswissroll <- esti_tsne(brokenswissroll, 30)
+comment(tsne_brokenswissroll) <- "Brokenswissroll"
 tsne_helix <- esti_tsne(helix, 30)
+comment(tsne_helix) <- "Helix"
 tsne_twinpeaks <- esti_tsne(twinpeaks, 30)
+comment(tsne_twinpeaks) <- "Twinpeaks"
 tsne_sphere <- esti_tsne(sphere, 30)
+comment(tsne_sphere) <- "Sphere"
 
 list_tsne <- list(tsne_swissroll, tsne_brokenswissroll, tsne_helix, tsne_twinpeaks, tsne_sphere)
 
+for (df in list_tsne) {
+  dfnm <- comment(df)
+  plot(df, main=dfnm)
+}
+
 # plot tsne
-par(mfrow=c(1, 2))
-lapply(list_tsne, function(x) {plot(x$Y)})
-par(mfrow=c(1, 1))
+#par(mfrow=c(1, 2))
+#lapply(list_tsne, function(x) {plot(x$Y)})
+#par(mfrow=c(1, 1))
 
 # trustworthiness
 trustworthiness_tsne_swissroll <- trustworthiness(12, swissroll, tsne_swissroll$Y)
