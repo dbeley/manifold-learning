@@ -16,12 +16,12 @@ source("indicateurs.R")
 #input:
 #     data: matrice de donnees
 esti_acp <- function(data) {
-  res.acp <- PCA(data)
+  res.acp <- PCA(data, graph=FALSE)
   res.acp
 }
 
-esti_acp_noyau <- function(data) {
-  res.acp <- kpca(data, kernel="rbfdot", kpar=list(sigma = .0001))
+esti_acp_noyau <- function(data, kernel="rbfdot", sigma = 0.0001) {
+  res.acp <- kpca(data, kernel=kernel, features=2, kpar=list(sigma = sigma))
   res.acp
 }
 
@@ -60,6 +60,37 @@ continuity_acp_helix <- continuity(12, helix, acp_helix$ind$coord)
 continuity_acp_twinpeaks <- continuity(12, twinpeaks, acp_twinpeaks$ind$coord)
 continuity_acp_sphere <- continuity(12, sphere, acp_sphere$ind$coord)
 
+# liste des kernel
+# rbfdot : Radial Basis kernel function "Gaussian"
+# polydot : Polynomial kernel function
+# vanilladot : Linear kernel function
+# tanhdot : Hyperbolic tangent kernel function
+# laplacedot : Laplacian kernel function
+# besseldot : Bessel kernel function
+# anovadot : ANOVA RBF kernel function
+# splinedot : Spline kernel
+liste_noyaux <- c("rbfdot", "polydot", "vanilladot", "tanhdot", "laplacedot", "besseldot", "anovadot", "splinedot")
+#liste_noyaux <- c("rbfdot", "laplacedot", "besseldot", "anovadot")
+#liste_noyaux <- c("rbfdot", "polydot")
+for (i in liste_noyaux) {
+  if (i %in% c("rbfdot", "laplacedot", "besseldot", "anovadot")) {
+    par(mfrow=c(3, 3))
+    #sigmas = 10^seq(-5, -3, length=9)
+    sigmas = 10^seq(-10, 3, length=9)
+    for (sigma in sigmas) {
+      acp_noyau_swissroll <- esti_acp_noyau(swissroll, i, sigma)
+      #xkpca <- kpca(x, kernel = "rbfdot", kpar = list(sigma = sigma))
+      plot(pcv(acp_noyau_swissroll), col = rep(2:1, each = nrow(acp_noyau_swissroll)), pch = 19, main = paste(i, " : ", sigma))
+  }
+  par(mfrow=c(1, 1))
+
+  }
+  trustworthiness_acp_noyau_swissroll <- trustworthiness(12, swissroll, pcv((acp_noyau_swissroll)))
+  print(paste("Trustworthiness noyau ", i, " : ", trustworthiness_acp_noyau_swissroll))
+  continuity_acp_noyau_swissroll <- continuity(12, swissroll, pcv((acp_noyau_swissroll)))
+  print(paste("Continuity noyau ", i, " : ", continuity_acp_noyau_swissroll))
+}
+
 # ACP à noyau
 acp_noyau_swissroll <- esti_acp_noyau(swissroll)
 comment(acp_noyau_swissroll) <- "Swissroll"
@@ -76,21 +107,21 @@ list_acp_noyau <- list(acp_noyau_swissroll, acp_noyau_brokenswissroll, acp_noyau
 
 for (df in list_acp_noyau) {
   dfnm <- comment(df)
-  plot(pcv(df)[1:2,], main=dfnm)
+  plot(pcv(df), main=dfnm)
 }
 
 # trustworthiness
-trustworthiness_acp_noyau_swissroll <- trustworthiness(12, swissroll, acp_noyau_swissroll$Y)
-trustworthiness_acp_noyau_brokenswissroll <- trustworthiness(12, brokenswissroll, acp_noyau_brokenswissroll$Y)
-trustworthiness_acp_noyau_helix <- trustworthiness(12, helix, acp_noyau_helix$Y)
-trustworthiness_acp_noyau_twinpeaks <- trustworthiness(12, twinpeaks, acp_noyau_twinpeaks$Y)
-trustworthiness_acp_noyau_sphere <- trustworthiness(12, sphere, acp_noyau_sphere$Y)
+trustworthiness_acp_noyau_swissroll <- trustworthiness(12, swissroll, acp_noyau_swissroll)
+trustworthiness_acp_noyau_brokenswissroll <- trustworthiness(12, brokenswissroll, acp_noyau_brokenswissroll)
+trustworthiness_acp_noyau_helix <- trustworthiness(12, helix, acp_noyau_helix)
+trustworthiness_acp_noyau_twinpeaks <- trustworthiness(12, twinpeaks, acp_noyau_twinpeaks)
+trustworthiness_acp_noyau_sphere <- trustworthiness(12, sphere, acp_noyau_sphere)
 
 # continuity
-continuity_acp_noyau_swissroll <- continuity(12, swissroll, acp_noyau_swissroll$Y)
-continuity_acp_noyau_brokenswissroll <- continuity(12, brokenswissroll, acp_noyau_brokenswissroll$Y)
-continuity_acp_noyau_helix <- continuity(12, helix, acp_noyau_helix$Y)
-continuity_acp_noyau_twinpeaks <- continuity(12, twinpeaks, acp_noyau_twinpeaks$Y)
-continuity_acp_noyau_sphere <- continuity(12, sphere, acp_noyau_sphere$Y)
+continuity_acp_noyau_swissroll <- continuity(12, swissroll, acp_noyau_swissroll)
+continuity_acp_noyau_brokenswissroll <- continuity(12, brokenswissroll, acp_noyau_brokenswissroll)
+continuity_acp_noyau_helix <- continuity(12, helix, acp_noyau_helix)
+continuity_acp_noyau_twinpeaks <- continuity(12, twinpeaks, acp_noyau_twinpeaks)
+continuity_acp_noyau_sphere <- continuity(12, sphere, acp_noyau_sphere)
 
 toc()
