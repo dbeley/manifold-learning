@@ -1,5 +1,5 @@
-rank <- function(i, j, k, data_2d) {
-  return(which(order(as.matrix(dist(data_2d)[i,])==j)))
+rank <- function(i, j, data_2d) {
+  return(which(order(as.matrix(dist(data_2d))[i,])==j))
 }
 
 Uik <- function(k, i, data, data_2d) {
@@ -19,7 +19,7 @@ trustworthiness <- function(k, data, data_2d) {
     uik <- Uik(k, i, data, data_2d)
     if (length(uik) > 0) {
       for (j in 1:length(uik)) {
-        sum <- sum + (rank(i, j, k, data_2d)-k)
+        sum <- sum + (rank(i, j, data_2d)-k)
         #sum <- sum + j-k
       }
     }
@@ -35,4 +35,7 @@ str(iso)
 lleres <- cbind(res.lle$X, res.lle$Y)
 iso$points[1:20,]
 
-trustworthiness(20, as.matrix(swissroll[1:20,]), as.matrix(iso$points[1:20,]))
+trustworthiness(2, swissroll[1:20,], iso$points[1:20,])
+
+debug(trustworthiness)
+undebug(trustworthiness)
