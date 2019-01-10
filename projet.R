@@ -1,6 +1,16 @@
 rm(list=ls())
 setwd("/home/david/Nextcloud/6. Cours/Manifold Learning/Projet")
 
+# Jeux de données implémentés
+# Swiss Roll
+## fonction simuData_swissroll
+# Broken Swiss Roll
+## fonction simuData_brokenswissroll
+# Twin Peaks
+## fonction simuData_twinpeaks
+# Helix
+## fonction simuData_helix
+
 library("rgl")
 # Swiss roll
 simuData_swissroll <- function(n) {
@@ -53,12 +63,22 @@ bswissroll <- simuData_brokenswissroll(5000, 4, 9)
 plot3d(bswissroll, col = rainbow(nrow(bswissroll)), size = 10)
 
 simuData_twinpeaks <- function(n) {
+  #u <- matrix(ncol = 2, nrow = n, runif(2*n, 0, 100))
+  ###x <- (1 - 2*u[,2]) + rnorm(n, 0, 1)
+  #x <- (1 - 2*u[,2]) + rnorm(n, 0, 1)
+  #y <- sin(pi - 2*pi*u[,2]) + rnorm(n, 0, 1)
+  ##y <- sin(pi - 2*pi*u[,2]) * tanh(3 - 6*u[,1])
+  #z <- tanh(3 - 6*u[,1]) + rnorm(n, 0, 1)
+  #twinpeaks <- cbind(x, y) 
+  #twinpeaks[order(x), ]
+  
+  inc <- 1.5 / sqrt(n)
   u <- matrix(ncol = 2, nrow = n, runif(2*n, 0, 100))
-  x <- (1 - 2*u[,2])
-  y <- sin(pi - 2*pi*u[,2])
-  z <- tanh(3 - 6*u[,1])
-  twinpeaks <- cbind(x, y, z)
-  twinpeaks[order(x), ]
+  x <- u[,1]
+  y <- 1 - 2*pi
+  z <- sin(pi - 2*pi*u[,2]) * tanh(3-6*u[,1])
+  twinpeaks <- cbind(u, z)
+  twinpeaks[order(z), ]
 }
 
 twinpeaks <- simuData_twinpeaks(5000)
