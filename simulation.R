@@ -6,8 +6,8 @@
 #library("factoextra")
 ## Isomap
 #library("vegan")
-## Plot3d
-#library("plot3D")
+# Plot3d
+library("plot3D")
 ## LLE
 #library("lle")
 
@@ -32,54 +32,8 @@ simuData_swissRoll<-function(n,dim=2){
   return(swissroll[order(v), ])
 }
 
-#swissroll <- simuData_swissRoll(1000)
+#swissroll <- simuData_swissRoll(500)
 #plot3d(swissroll, type="p", aspect = TRUE, col=rainbow(nrow(swissroll)), size=10)
-
-#Simulation du helix
-#input:
-#     n: nombre de data
-#     dim: nombre de dimension maniflod
-simuData_helix<-function(n,dim=1){
-  u <- matrix(2 * pi * runif(n), ncol = dim)
-  x <- (2+cos(8*u[,1]))*cos(u[,1])
-  y <- (2+cos(8*u[,1]))*sin(u[,1])
-  z <- sin(8*u[,1])
-  helix <- cbind(x, y, z)
-  layout(matrix(1:2,1:2))
-  scatter3D(x, y, z, phi = 80, theta = 0)
-  scatter3D(x, y, z, phi = 20, theta = 0)
-  #plot3d(helix[order(x), ], type="p",aspect =TRUE,col=rainbow(n),size=10)
-  return(helix[order(x), ])
-}
-
-#helix <- simuData_helix(1000)
-#plot3d(helix, type="p", aspect = TRUE, col=rainbow(nrow(helix)), size=10)
-
-
-#Simulation du sphere
-#input:
-#     n: nombre de data
-#     r: rayon de sphere
-#     dim: nombre de dimension maniflod
-simuData_sphere<-function(n,r,dim=2){
-  u <- matrix(runif(n*2,0,2*pi), ncol = dim)
-  
-  theta <- u[,1]
-  phi <- u[,2]
-  
-  x <- (r * sin(phi) * cos(theta)) 
-  y <- (r * sin(phi) * sin(theta))
-  z <- (r * cos(phi))
-  sphere<- cbind(x, y, z)
-  layout(matrix(1:2,1:2))
-  scatter3D(x, y, z, phi = 80, theta = 0)
-  scatter3D(x, y, z, phi = 20, theta = 0)
-  #plot3d(sphere[order(x), ], type="p",aspect =TRUE,col=rainbow(n),size=10)
-  return(sphere[order(x), ])
-}
-
-#sphere <- simuData_sphere(1000, r=2)
-#plot3d(sphere, type="p", aspect = TRUE, col=rainbow(nrow(sphere)), size=10)
 
 #Simulation du brokenswissroll
 #input:
@@ -108,8 +62,29 @@ simuData_brokenswissroll <- function(n,dim=2, a, b) {
   return(swissroll)
 }
 
-#brokenswissroll <- simuData_brokenswissroll(1000, a=0.4, b=0.8)
+#brokenswissroll <- simuData_brokenswissroll(500, a=0.4, b=0.8)
 #plot3d(brokenswissroll, type="p", aspect = TRUE, col=rainbow(nrow(brokenswissroll)), size=10)
+
+#Simulation du helix
+#input:
+#     n: nombre de data
+#     dim: nombre de dimension maniflod
+simuData_helix<-function(n,dim=1){
+  u <- matrix(2 * pi * runif(n), ncol = dim)
+  x <- (2+cos(8*u[,1]))*cos(u[,1])
+  y <- (2+cos(8*u[,1]))*sin(u[,1])
+  z <- sin(8*u[,1])
+  helix <- cbind(x, y, z)
+  layout(matrix(1:2,1:2))
+  scatter3D(x, y, z, phi = 80, theta = 0)
+  scatter3D(x, y, z, phi = 20, theta = 0)
+  #plot3d(helix[order(x), ], type="p",aspect =TRUE,col=rainbow(n),size=10)
+  return(helix[order(x), ])
+}
+
+#helix <- simuData_helix(500)
+#plot3d(helix, type="p", aspect = TRUE, col=rainbow(nrow(helix)), size=10)
+
 
 #Simulation du twinpeaks
 #input:
@@ -120,7 +95,7 @@ simuData_twinpeaks <- function(n,dim=2,h=2) {
   # rejected an resampled
   u <- matrix(runif(2*n), ncol = dim)
   height<-h * apply(sin(h * pi * u), 1, prod)
-  
+
   twinpeaks <- cbind(u, height)
   layout(matrix(1:2,1:2))
   scatter3D(x=u[,1], y=u[,2], z=height, phi = 80, theta = 0)
@@ -129,13 +104,38 @@ simuData_twinpeaks <- function(n,dim=2,h=2) {
   return(twinpeaks)
 }
 
-#twinpeaks <- simuData_twinpeaks(1000)
+#twinpeaks <- simuData_twinpeaks(500)
 #plot3d(twinpeaks, type="p", aspect = TRUE, col=rainbow(nrow(twinpeaks)), size=10)
+
+#Simulation du sphere
+#input:
+#     n: nombre de data
+#     r: rayon de sphere
+#     dim: nombre de dimension maniflod
+simuData_sphere<-function(n,r,dim=2){
+  u <- matrix(runif(n*2,0,2*pi), ncol = dim)
+
+  theta <- u[,1]
+  phi <- u[,2]
+
+  x <- (r * sin(phi) * cos(theta))
+  y <- (r * sin(phi) * sin(theta))
+  z <- (r * cos(phi))
+  sphere<- cbind(x, y, z)
+  layout(matrix(1:2,1:2))
+  scatter3D(x, y, z, phi = 80, theta = 0)
+  scatter3D(x, y, z, phi = 20, theta = 0)
+  #plot3d(sphere[order(x), ], type="p",aspect =TRUE,col=rainbow(n),size=10)
+  return(sphere[order(x), ])
+}
+
+#sphere <- simuData_sphere(500, r=2)
+#plot3d(sphere, type="p", aspect = TRUE, col=rainbow(nrow(sphere)), size=10)
 
 # Données
 set.seed(20)
-swissroll <- simuData_swissRoll(1000)
-helix <- simuData_helix(1000)
-sphere <- simuData_sphere(1000, r=2)
-brokenswissroll <- simuData_brokenswissroll(1000, a=0.4, b=0.8)
-twinpeaks <- simuData_twinpeaks(1000)
+swissroll <- simuData_swissRoll(500)
+brokenswissroll <- simuData_brokenswissroll(500, a=0.4, b=0.8)
+helix <- simuData_helix(500)
+twinpeaks <- simuData_twinpeaks(500)
+sphere <- simuData_sphere(500, r=2)

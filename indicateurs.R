@@ -16,9 +16,12 @@ Uik <- function(k, i, data, data_2d) {
 trustworthiness <- function(k, data, data_2d) {
   n <- nrow(data)
   prem <- (2/(n*k*(2*n - 3*k - 1)))
-  
+
   sum <- 0
+  #nn_k_data <- lle::find_nn_k(data, k)
+  #nn_k_data_2d <- lle::find_nn_k(data_2d, k)
   for (i in 1:n) {
+    #uik <- setdiff(nn_k_data_2d[i,], nn_k_data[i,])
     uik <- Uik(k, i, data, data_2d)
     if (length(uik) > 0) {
       for (j in uik) {
@@ -32,7 +35,7 @@ trustworthiness <- function(k, data, data_2d) {
 continuity <- function(k, data, data_2d) {
   n <- nrow(data)
   prem <- (2/(n*k*(2*n - 3*k - 1)))
-  
+
   sum <- 0
   for (i in 1:n) {
     uik <- Uik(k, i, data_2d, data)
