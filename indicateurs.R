@@ -18,9 +18,11 @@ trustworthiness <- function(k, data, data_2d) {
   prem <- (2/(n*k*(2*n - 3*k - 1)))
 
   sum <- 0
+  # marche pas
   #nn_k_data <- lle::find_nn_k(data, k)
   #nn_k_data_2d <- lle::find_nn_k(data_2d, k)
   for (i in 1:n) {
+    # marche pas
     #uik <- setdiff(nn_k_data_2d[i,], nn_k_data[i,])
     uik <- Uik(k, i, data, data_2d)
     if (length(uik) > 0) {
@@ -47,11 +49,3 @@ continuity <- function(k, data, data_2d) {
   }
   return (1 - (prem * sum))
 }
-
-
-#Rprof()
-#continuity(12, swissroll[1:200,], iso$points[1:200,])
-#Rprof(NULL)
-#summaryRprof()
-#
-#trustworthiness(2, swissroll[1:200,], iso$points[1:200,])

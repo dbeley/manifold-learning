@@ -22,11 +22,11 @@ esti_tsne <- function(data,k) {
 list_data <- list(swissroll, brokenswissroll, helix, twinpeaks, sphere)
 
 # t-SNE sur swissroll, helix, sphere, brokenswissroll, twinpeaks
-tsne_swissroll <- esti_tsne(swissroll, 10)
-tsne_brokenswissroll <- esti_tsne(brokenswissroll, 10)
-tsne_helix <- esti_tsne(helix, 10)
-tsne_twinpeaks <- esti_tsne(twinpeaks, 10)
-tsne_sphere <- esti_tsne(sphere, 10)
+tsne_swissroll <- esti_tsne(swissroll, 30)
+tsne_brokenswissroll <- esti_tsne(brokenswissroll, 30)
+tsne_helix <- esti_tsne(helix, 30)
+tsne_twinpeaks <- esti_tsne(twinpeaks, 30)
+tsne_sphere <- esti_tsne(sphere, 30)
 
 list_tsne <- list(tsne_swissroll, tsne_brokenswissroll, tsne_helix, tsne_twinpeaks, tsne_sphere)
 
@@ -50,4 +50,4 @@ continuity_tsne_twinpeaks <- continuity(12, twinpeaks, tsne_twinpeaks$Y)
 continuity_tsne_sphere <- continuity(12, sphere, tsne_sphere$Y)
 
 toc()
-# 142 secondes
+# 87 secondes

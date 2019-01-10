@@ -60,4 +60,4 @@ continuity_lle_twinpeaks <- continuity(12, twinpeaks, lle_twinpeaks$Y)
 continuity_lle_sphere <- continuity(12, sphere, lle_sphere$Y)
 
 toc()
-# 142 secondes
+# 132 secondes
