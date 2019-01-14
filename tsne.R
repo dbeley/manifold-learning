@@ -1,5 +1,3 @@
-# Méthode t-SNE
-
 library("tictoc")
 # t-SNE
 library("Rtsne")
@@ -16,23 +14,24 @@ source("indicateurs.R")
 #input:
 #     data: matrice de donnees
 #     k: perplexité
-esti_tsne <- function(data,k) {
-  res.tsne <- Rtsne(data, pca = FALSE, theta = 0.0, perplexity = k)
+#     ndim: la dimension intrinsèque
+esti_tsne <- function(data,k,ndim) {
+  res.tsne <- Rtsne(data, dims = ndim, pca = FALSE, theta = 0.0, perplexity = k)
   res.tsne
 }
 
 list_data <- list(swissroll, brokenswissroll, helix, twinpeaks, sphere)
 
 # t-SNE sur swissroll, helix, sphere, brokenswissroll, twinpeaks
-tsne_swissroll <- esti_tsne(swissroll, 30)
+tsne_swissroll <- esti_tsne(swissroll, 30,2)
 comment(tsne_swissroll) <- "Swissroll"
-tsne_brokenswissroll <- esti_tsne(brokenswissroll, 30)
+tsne_brokenswissroll <- esti_tsne(brokenswissroll, 30,2)
 comment(tsne_brokenswissroll) <- "Brokenswissroll"
-tsne_helix <- esti_tsne(helix, 30)
+tsne_helix <- esti_tsne(helix, 30,1)
 comment(tsne_helix) <- "Helix"
-tsne_twinpeaks <- esti_tsne(twinpeaks, 30)
+tsne_twinpeaks <- esti_tsne(twinpeaks, 30,2)
 comment(tsne_twinpeaks) <- "Twinpeaks"
-tsne_sphere <- esti_tsne(sphere, 30)
+tsne_sphere <- esti_tsne(sphere, 30,2)
 comment(tsne_sphere) <- "Sphere"
 
 list_tsne <- list(tsne_swissroll, tsne_brokenswissroll, tsne_helix, tsne_twinpeaks, tsne_sphere)
@@ -60,13 +59,6 @@ continuity_tsne_brokenswissroll <- continuity(12, brokenswissroll, tsne_brokensw
 continuity_tsne_helix <- continuity(12, helix, tsne_helix$Y)
 continuity_tsne_twinpeaks <- continuity(12, twinpeaks, tsne_twinpeaks$Y)
 continuity_tsne_sphere <- continuity(12, sphere, tsne_sphere$Y)
-
-# 1-NN
-nn_tsne_swissroll <- nn(swissroll, tsne_swissroll$ind$coord)
-nn_tsne_brokenswissroll <- nn(brokenswissroll, tsne_brokenswissroll$ind$coord)
-nn_tsne_helix <- nn(helix, tsne_helix$ind$coord)
-nn_tsne_twinpeaks <- nn(twinpeaks, tsne_twinpeaks$ind$coord)
-nn_tsne_sphere <- nn(sphere, tsne_sphere$ind$coord)
 
 toc()
 # 87 secondes
