@@ -1,3 +1,5 @@
+# Ancien fichier, plus utilisé
+
 rm(list=ls())
 setwd("/home/david/Nextcloud/6. Cours/Manifold Learning/Projet")
 

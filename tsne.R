@@ -1,3 +1,5 @@
+# Méthode t-SNE
+
 library("tictoc")
 # t-SNE
 library("Rtsne")
@@ -58,6 +60,13 @@ continuity_tsne_brokenswissroll <- continuity(12, brokenswissroll, tsne_brokensw
 continuity_tsne_helix <- continuity(12, helix, tsne_helix$Y)
 continuity_tsne_twinpeaks <- continuity(12, twinpeaks, tsne_twinpeaks$Y)
 continuity_tsne_sphere <- continuity(12, sphere, tsne_sphere$Y)
+
+# 1-NN
+nn_tsne_swissroll <- nn(swissroll, tsne_swissroll$ind$coord)
+nn_tsne_brokenswissroll <- nn(brokenswissroll, tsne_brokenswissroll$ind$coord)
+nn_tsne_helix <- nn(helix, tsne_helix$ind$coord)
+nn_tsne_twinpeaks <- nn(twinpeaks, tsne_twinpeaks$ind$coord)
+nn_tsne_sphere <- nn(sphere, tsne_sphere$ind$coord)
 
 toc()
 # 87 secondes

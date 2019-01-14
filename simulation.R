@@ -1,17 +1,7 @@
-#library("rgl")
-#library("permute")
-#library("lattice")
-## ACP
-#library("FactoMineR")
-#library("factoextra")
-## Isomap
-#library("vegan")
+# Simulation des données
+
 # Plot3d
 library("plot3D")
-## LLE
-#library("lle")
-
-# Simulation des données
 
 #Simulation du swissRoll
 #input:

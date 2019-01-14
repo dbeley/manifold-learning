@@ -1,3 +1,5 @@
+# Méthode LLE
+
 library("tictoc")
 # LLE
 library("lle")
@@ -68,6 +70,13 @@ continuity_lle_brokenswissroll <- continuity(12, brokenswissroll, lle_brokenswis
 continuity_lle_helix <- continuity(12, helix, lle_helix$Y)
 continuity_lle_twinpeaks <- continuity(12, twinpeaks, lle_twinpeaks$Y)
 continuity_lle_sphere <- continuity(12, sphere, lle_sphere$Y)
+
+# 1-NN
+nn_lle_swissroll <- nn(swissroll, lle_swissroll$ind$coord)
+nn_lle_brokenswissroll <- nn(brokenswissroll, lle_brokenswissroll$ind$coord)
+nn_lle_helix <- nn(helix, lle_helix$ind$coord)
+nn_lle_twinpeaks <- nn(twinpeaks, lle_twinpeaks$ind$coord)
+nn_lle_sphere <- nn(sphere, lle_sphere$ind$coord)
 
 toc()
 # 132 secondes

@@ -1,3 +1,5 @@
+# Calcul d'indicateurs
+
 rank <- function(i, j, data) {
   return(which(order(as.matrix(dist(data))[i,])==j))
 }
@@ -48,4 +50,10 @@ continuity <- function(k, data, data_2d) {
     }
   }
   return (1 - (prem * sum))
+}
+
+nn <- function(data, data_2d) {
+  nn1 <- as.matrix(apply(as.matrix(dist(data)), 1, function(x) { order(x)[2]}))
+  nn2 <- as.matrix(apply(as.matrix(dist(data_2d)), 1, function(x) { order(x)[2]}))
+  length(setdiff(nn1, nn2))/nrow(data)
 }

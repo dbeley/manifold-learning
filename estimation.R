@@ -1,3 +1,5 @@
+# Ancien fichier, plus utilisé
+
 library("tictoc")
 ## ACP
 #library("FactoMineR")
