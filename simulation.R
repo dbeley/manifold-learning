@@ -22,7 +22,7 @@ simuData_swissRoll<-function(n,dim=2){
   return(swissroll[order(v), ])
 }
 
-#swissroll <- simuData_swissRoll(500)
+#swissroll <- simuData_swissRoll(5000)
 #plot3d(swissroll, type="p", aspect = TRUE, col=rainbow(nrow(swissroll)), size=10)
 
 #Simulation du brokenswissroll
@@ -49,11 +49,11 @@ simuData_brokenswissroll <- function(n,dim=2, a, b) {
   scatter3D(x, y, z, phi = 80, theta = 0)
   scatter3D(x, y, z, phi = 20, theta = 0)
   #plot3d(swissroll[order(v), ], type="p",aspect =TRUE,col=rainbow(n),size=10)
-  return(swissroll)
+  return(swissroll[order(v), ])
 }
 
-#brokenswissroll <- simuData_brokenswissroll(500, a=0.4, b=0.8)
-#plot3d(brokenswissroll, type="p", aspect = TRUE, col=rainbow(nrow(brokenswissroll)), size=10)
+#brokenswissroll <- simuData_brokenswissroll(5000, a=0.4, b=0.8)
+#plot3d(brokenswissroll, type="p", aspect = TRUE, col=rainbow(5000),  size=10)
 
 #Simulation du helix
 #input:
@@ -72,7 +72,7 @@ simuData_helix<-function(n,dim=1){
   return(helix[order(x), ])
 }
 
-#helix <- simuData_helix(500)
+#helix <- simuData_helix(5000)
 #plot3d(helix, type="p", aspect = TRUE, col=rainbow(nrow(helix)), size=10)
 
 
@@ -91,10 +91,10 @@ simuData_twinpeaks <- function(n,dim=2,h=2) {
   scatter3D(x=u[,1], y=u[,2], z=height, phi = 80, theta = 0)
   scatter3D(x=u[,1], y=u[,2], z=height, phi = 20, theta = 0)
   #plot3d(twinpeaks, type="p",aspect =TRUE,col=rainbow(n),size=10)
-  return(twinpeaks)
+  return(twinpeaks[order(height),])
 }
 
-#twinpeaks <- simuData_twinpeaks(500)
+#twinpeaks <- simuData_twinpeaks(5000)
 #plot3d(twinpeaks, type="p", aspect = TRUE, col=rainbow(nrow(twinpeaks)), size=10)
 
 #Simulation du sphere
@@ -119,7 +119,7 @@ simuData_sphere<-function(n,r,dim=2){
   return(sphere[order(x), ])
 }
 
-#sphere <- simuData_sphere(500, r=2)
+#sphere <- simuData_sphere(5000, r=2)
 #plot3d(sphere, type="p", aspect = TRUE, col=rainbow(nrow(sphere)), size=10)
 
 # Données
