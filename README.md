@@ -6,3 +6,15 @@
 - isomap.R : script pour Isomap
 - lle.R : script pour LLE
 - tsne.R : script pour t-SNE
+
+# Bibliothèques requises
+
+- tictoc
+- FactoMineR
+- factoextra
+- kernlab
+- vegan
+- lle
+- Rtsne
+- rgl
+- plot3D

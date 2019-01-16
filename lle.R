@@ -25,11 +25,11 @@ list_data <- list(swissroll, brokenswissroll, helix, twinpeaks, sphere)
 
 # meilleur k
 # résultat = à peu près 10
-#bestk_swissroll <- calc_k(swissroll, m=2)
-#bestk_brokenswissroll <- calc_k(brokenswissroll, m=2)
-#bestk_helix <- calc_k(helix, m=2)
-#bestk_twinpeaks <- calc_k(twinpeaks, m=2)
-#bestk_sphere <- calc_k(sphere, m=2)
+#bestk_swissroll <- calc_k(swissroll, m = 2, cpus = 4)
+#bestk_brokenswissroll <- calc_k(brokenswissroll, m = 2, cpus = 4)
+#bestk_helix <- calc_k(helix, m = 2, cpus = 4)
+#bestk_twinpeaks <- calc_k(twinpeaks, m = 2, cpus = 4)
+#bestk_sphere <- calc_k(sphere, m = 2, cpus = 4)
 
 # LLE sur swissroll, helix, sphere, brokenswissroll, twinpeaks
 lle_swissroll <- esti_lle(swissroll, 10)

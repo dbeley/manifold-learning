@@ -52,8 +52,9 @@ continuity <- function(k, data, data_2d) {
   return (1 - (prem * sum))
 }
 
-nn <- function(data, data_2d) {
-  nn1 <- as.matrix(apply(as.matrix(dist(data)), 1, function(x) { order(x)[2]}))
-  nn2 <- as.matrix(apply(as.matrix(dist(data_2d)), 1, function(x) { order(x)[2]}))
-  length(setdiff(nn1, nn2))/nrow(data)
+# Proportion de points ayant le même voisin le plus proche dans la projection
+pp <- function(data, data_2d) {
+  pp1 <- as.matrix(apply(as.matrix(dist(data)), 1, function(x) { order(x)[2]}))
+  pp2 <- as.matrix(apply(as.matrix(dist(data_2d)), 1, function(x) { order(x)[2]}))
+  length(which(pp1 == pp2))/nrow(data)
 }
