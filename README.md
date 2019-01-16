@@ -23,5 +23,5 @@
 # Données
 
 Le script estimation_mnist.R nécessite les données mnist, composé de deux fichiers :
-    - data.txt
-    - labels.txt
+- data.txt
+- labels.txt
