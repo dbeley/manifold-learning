@@ -53,7 +53,7 @@ for (df in list_acp) {
 # coordonnées 2d de la projection
 acp_swissroll_res <- rotated(acp_swissroll)
 acp_brokenswissroll_res <- rotated(acp_brokenswissroll) 
-acp_helix_res <- rotated(acp_helix)
+acp_helix_res <- rotated(acp_helix)[,1]
 acp_twinpeaks_res <- rotated(acp_twinpeaks)
 acp_sphere_res <- rotated(acp_sphere)
 
