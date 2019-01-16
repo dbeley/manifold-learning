@@ -21,6 +21,24 @@ esti_isomap <- function(data, k, ndim) {
 
 list_data <- list(swissroll, helix, sphere, brokenswissroll, twinpeaks)
 
+##swissroll
+#ks <- seq(4, 10, length=9)
+##broken
+#ks <- seq(11, 50, length=9)
+##helix
+#ks <- seq(6, 20, length=9)
+##twinpeaks
+#ks <- seq(4, 20, length=9)
+##sphere
+#ks <- seq(4, 10, length=9)
+#
+#par(mfrow=c(3,3))
+#for (k in ks) {
+#  isomap <- esti_isomap(sphere, k, 2)
+#  plot(isomap$points, main=k,col = rainbow(nrow(isomap$points)), pch = 19)
+#}
+#par(mfrow=c(1,1))
+
 isomap_swissroll <- esti_isomap(swissroll,5,2)
 comment(isomap_swissroll) <- "Swissroll"
 isomap_helix <- esti_isomap(helix, 10,1)
@@ -38,7 +56,7 @@ list_isomap <- list(isomap_swissroll, isomap_helix, isomap_sphere, isomap_broken
 par(mfrow=c(1, 2))
 for (df in list_isomap) {
   dfnm <- comment(df)
-  plot(df$points, main=dfnm,col = rainbow(nrow(df$points)))
+  plot(df$points, main=dfnm,col = rainbow(nrow(df$points)), pch = 19)
 }
 par(mfrow=c(1, 1))
 

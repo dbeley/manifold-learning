@@ -5,7 +5,7 @@ library("Rtsne")
 rm(list=ls())
 tic("t-SNE")
 
-setwd("/home/david/Nextcloud/6. Cours/Manifold Learning/Projet/manifold-learning/")
+#setwd("/home/david/Nextcloud/6. Cours/Manifold Learning/Projet/manifold-learning/")
 
 source("simulation.R")
 source("indicateurs.R")
@@ -21,6 +21,17 @@ esti_tsne <- function(data,k,ndim) {
 }
 
 list_data <- list(swissroll, brokenswissroll, helix, twinpeaks, sphere)
+
+# Long
+par(mfrow=c(3,3))
+ks <- seq(5, 50, length=9)
+for (df in list_data) {
+  for (k in ks) {
+    tsne_res <- esti_tsne(df, k, 2)
+    plot(tsne_res$Y, main = paste("k : ", k), col = rainbow(nrow(df)), pch = 19)
+  }
+}
+par(mfrow=c(1,1))
 
 # t-SNE sur swissroll, helix, sphere, brokenswissroll, twinpeaks
 tsne_swissroll <- esti_tsne(swissroll, 30,2)
@@ -41,10 +52,6 @@ for (df in list_tsne) {
   plot(df$Y, main=dfnm)
 }
 
-# plot tsne
-#par(mfrow=c(1, 2))
-#lapply(list_tsne, function(x) {plot(x$Y)})
-#par(mfrow=c(1, 1))
 
 # trustworthiness
 trustworthiness_tsne_swissroll <- trustworthiness(12, swissroll, tsne_swissroll$Y)

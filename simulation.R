@@ -2,6 +2,7 @@
 
 # Plot3d
 library("plot3D")
+library("rgl")
 
 #Simulation du swissRoll
 #input:
@@ -91,7 +92,7 @@ simuData_twinpeaks <- function(n,dim=2,h=2) {
   scatter3D(x=u[,1], y=u[,2], z=height, phi = 80, theta = 0)
   scatter3D(x=u[,1], y=u[,2], z=height, phi = 20, theta = 0)
   #plot3d(twinpeaks, type="p",aspect =TRUE,col=rainbow(n),size=10)
-  return(twinpeaks[order(height),])
+  return(twinpeaks[order(u[,1]),])
 }
 
 #twinpeaks <- simuData_twinpeaks(5000)

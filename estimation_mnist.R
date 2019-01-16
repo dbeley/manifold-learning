@@ -3,19 +3,17 @@ library("rgl")
 library("plot3D")
 library("FactoMineR")
 library("factoextra")
-#library("corrplot")
 library("lle")
 library("Rtsne")
 
 
 rm(list=ls())
 
-setwd("/home/david/Nextcloud/6. Cours/Manifold Learning/Projet/manifold-learning")
+#setwd("/home/david/Nextcloud/6. Cours/Manifold Learning/Projet/manifold-learning")
 mnist    <- as.matrix(read.table("data.txt"))
 labels <-read.table("labels.txt", colClasses = 'integer')
 labels <- as.factor(labels$V1)
 set.seed(20)
-#dim(mnist)
 rowsmnist <- sample(5000, 200)
 mnist <- mnist[rowsmnist,]
 labels <- labels[rowsmnist]
@@ -68,8 +66,6 @@ esti_tsne <- function(data,k,ndim) {
   res.tsne <- Rtsne(data, dims = ndim, pca = FALSE, theta = 0.0, perplexity = k)
   res.tsne
 }
-
-# Mesures d'évaluation ------------------------------------
 
 # ACP
 acp_mnist <- esti_acp(mnist)

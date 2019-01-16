@@ -9,7 +9,7 @@ library("kernlab")
 rm(list=ls())
 tic("ACP")
 
-setwd("/home/david/Nextcloud/6. Cours/Manifold Learning/Projet/manifold-learning/")
+#setwd("/home/david/Nextcloud/6. Cours/Manifold Learning/Projet/manifold-learning/")
 
 source("simulation.R")
 source("indicateurs.R")
@@ -47,7 +47,7 @@ list_acp <- list(acp_swissroll, acp_brokenswissroll, acp_helix, acp_twinpeaks, a
 for (df in list_acp) {
   dfnm <- comment(df)
   #plot(df$ind$coord, main=dfnm)
-  plot(rotated(df), main=dfnm)
+  plot(rotated(df), main=dfnm, col = rainbow(nrow(df)))
 }
 
 # coordonnées 2d de la projection
@@ -56,11 +56,6 @@ acp_brokenswissroll_res <- rotated(acp_brokenswissroll)
 acp_helix_res <- rotated(acp_helix)
 acp_twinpeaks_res <- rotated(acp_twinpeaks)
 acp_sphere_res <- rotated(acp_sphere)
-#acp_swissroll_res <- acp_swissroll$ind$coord[,1:2]
-#acp_brokenswissroll_res <- acp_brokenswissroll$ind$coord[,1:2]
-#acp_helix_res <- acp_helix$ind$coord[,1]
-#acp_twinpeaks_res <- acp_twinpeaks$ind$coord[,1:2]
-#acp_sphere_res <- acp_sphere$ind$coord[,1:2]
 
 # trustworthiness
 trustworthiness_acp_swissroll <- trustworthiness(12, swissroll, acp_swissroll_res)
@@ -110,11 +105,6 @@ acp_noyau_brokenswissroll_res <- rotated(acp_noyau_brokenswissroll)
 acp_noyau_helix_res <- rotated(acp_noyau_helix)
 acp_noyau_twinpeaks_res <- rotated(acp_noyau_twinpeaks)
 acp_noyau_sphere_res <- rotated(acp_noyau_sphere)
-#acp_noyau_swissroll_res <- acp_noyau_swissroll$ind$coord[,1:2]
-#acp_noyau_brokenswissroll_res <- acp_noyau_brokenswissroll$ind$coord[,1:2]
-#acp_noyau_helix_res <- acp_noyau_helix$ind$coord[,1]
-#acp_noyau_twinpeaks_res <- acp_noyau_twinpeaks$ind$coord[,1:2]
-#acp_noyau_sphere_res <- acp_noyau_sphere$ind$coord[,1:2]
 
 # trustworthiness
 trustworthiness_acp_noyau_swissroll <- trustworthiness(12, swissroll, acp_noyau_swissroll_res)
@@ -129,12 +119,5 @@ continuity_acp_noyau_brokenswissroll <- continuity(12, brokenswissroll, acp_noya
 continuity_acp_noyau_helix <- continuity(12, helix, acp_noyau_helix_res)
 continuity_acp_noyau_twinpeaks <- continuity(12, twinpeaks, acp_noyau_twinpeaks_res)
 continuity_acp_noyau_sphere <- continuity(12, sphere, acp_noyau_sphere_res)
-
-# Proportion de mêmes voisins
-pp_acp_noyau_swissroll <- pp(swissroll, acp_noyau_swissroll_res)
-pp_acp_noyau_brokenswissroll <- pp(brokenswissroll, acp_noyau_brokenswissroll_res)
-pp_acp_noyau_helix <- pp(helix, acp_noyau_helix_res)
-pp_acp_noyau_twinpeaks <- pp(twinpeaks, acp_noyau_twinpeaks_res)
-pp_acp_noyau_sphere <- pp(sphere, acp_noyau_sphere_res)
 
 toc()

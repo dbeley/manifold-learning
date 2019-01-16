@@ -23,7 +23,7 @@ esti_lle <- function(data,k) {
 
 list_data <- list(swissroll, brokenswissroll, helix, twinpeaks, sphere)
 
-# meilleur k
+# Recherche du meilleur k
 # résultat = à peu près 10
 #bestk_swissroll <- calc_k(swissroll, m = 2, cpus = 4)
 #bestk_brokenswissroll <- calc_k(brokenswissroll, m = 2, cpus = 4)
@@ -47,13 +47,8 @@ list_lle <- list(lle_swissroll, lle_brokenswissroll, lle_helix, lle_twinpeaks, l
 
 for (df in list_lle) {
   dfnm <- comment(df)
-  plot(df$Y, main=dfnm)
+  plot(df$Y, main=dfnm, col = rainbow(nrow(df)))
 }
-
-# plot lle
-#par(mfrow=c(1, 2))
-#lapply(list_lle, function(x) {plot(x$Y)})
-#par(mfrow=c(1, 1))
 
 # trustworthiness
 trustworthiness_lle_swissroll <- trustworthiness(12, swissroll, lle_swissroll$Y)
