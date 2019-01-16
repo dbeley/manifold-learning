@@ -1,4 +1,6 @@
-# Fichiers
+# Manifold Learning
+
+## Fichiers présents
 
 - acp.R : script pour l'ACP
 - estimation_mnist.R : script pour les données MNIST (avec toutes les méthodes)
@@ -8,7 +10,7 @@
 - simulation.R : création des jeux de données
 - tsne.R : script pour t-SNE
 
-# Bibliothèques requises
+## Bibliothèques requises
 
 - tictoc
 - FactoMineR
@@ -20,8 +22,8 @@
 - rgl
 - plot3D
 
-# Données
+## Données
 
-Le script estimation_mnist.R nécessite les données mnist, composé de deux fichiers :
+Le script estimation_mnist.R nécessite le jeu de données mnist, composée de deux fichiers :
 - data.txt
 - labels.txt
